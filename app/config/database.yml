@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: safebite_development
+  pool: 5
+  host: 127.0.0.1
+  username: root
+  password: root_pw
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: safebite_test
+  pool: 5
+  host: 127.0.0.1
+  username: root
+  password: root_pw

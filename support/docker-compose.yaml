@@ -1,0 +1,31 @@
+services:
+
+  # nats:
+  #   image: docker.io/nats:2.9.20
+  #   ports:
+  #     - "4222:4222"
+  #     - "6222:6222"
+  #     - "8222:8222"
+  #   volumes:
+  #     - "./nats/certs/server.pem:/certs/server.pem"
+  #     - "./nats/certs/server-key.pem:/certs/server-key.pem"
+  #   command:
+  #     - "-tls"
+  #     - "-tlscert=/certs/server.pem"
+  #     - "-tlskey=/certs/server-key.pem"
+  #     - "-js"
+
+  pg:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root_pw
+      - POSTGRES_DB=safebite_development
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -h localhost -p 5432 -d safebite_development"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
