@@ -64,5 +64,14 @@ jobs:
           RAILS_ENV: test
           # REDIS_URL: redis://localhost:6379/0
         run: |
-          make test
+          pushd ./app
+
+          bundle exec rake db:create RAILS_ENV=test
+          bundle exec rake db:migrate RAILS_ENV=test
+
+          bundle exec rubocop
+
+          bundle exec rspec
+
+          popd
 
