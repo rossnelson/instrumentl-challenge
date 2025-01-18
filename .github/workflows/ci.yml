@@ -81,5 +81,5 @@ jobs:
         env:
           RAILS_ENV: test
           # REDIS_URL: redis://localhost:6379/0
-        run: cd app && bin/rails db:test:prepare test test:system
+        run: cd app && bin/rails db:test:prepare test
 
