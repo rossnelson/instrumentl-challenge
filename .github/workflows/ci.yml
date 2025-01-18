@@ -14,7 +14,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Ruby
-        uses: asdf-vm/actions/install@v3
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: cd app && bin/brakeman --no-pager
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: cd app && bin/brakeman --no-pager
@@ -26,7 +32,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Ruby
-        uses: asdf-vm/actions/install@v3
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
 
       - name: Lint code for consistent style
         run: cd app && bin/rubocop -f github
@@ -63,7 +72,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Ruby
-        uses: asdf-vm/actions/install@v3
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
 
       - name: Run tests
         env:
@@ -71,10 +83,3 @@ jobs:
           # REDIS_URL: redis://localhost:6379/0
         run: cd app && bin/rails db:test:prepare test test:system
 
-      - name: Keep screenshots from failed system tests
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: screenshots
-          path: ${{ github.workspace }}/tmp/screenshots
-          if-no-files-found: ignore
