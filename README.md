@@ -127,14 +127,14 @@ You can also use full text search by passing the search
 parameter. for example `GET /locations?search=starbucks` will return all
 locations with "starbucks" in the name.
 
-### Convenience Scripts
+### Executing Tests
 
-From the root of the project:
+From the root of the project run `make test`:
 
-1. Running `./test.sh` will run tests for the rails application using `rubocop`
-   for linting and `rspec` for testing.
-1. Running `./run.sh` will execute the rake task, import each CSV, and then start the
-   REST API. By default, the API runs on port 3000.
+1. Waits fo rthe postgres db to become accessible
+1. Creates and migrates the test db
+1. Lints the codebase using `rubocop`
+1. Executes unit test susing `rspec`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
