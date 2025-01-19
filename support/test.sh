@@ -14,6 +14,6 @@ bundle exec rake db:migrate RAILS_ENV=test
 
 bundle exec rubocop
 
-bundle exec rspec
+bundle exec rspec -fd
 
 popd
