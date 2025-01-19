@@ -115,14 +115,14 @@ would expect some kind of authentication to be in place.
 
 - `GET /metrics` - return total counts for each imported object
 - `GET /locations` - list locations
-- `GET /locations/:id` - Get a single client by id
-- `GET /locations/:id/inspections` - list all policies for a client
+- `GET /locations/:id` - Get a single location by id
+- `GET /locations/:id/inspections` - list all inspections for a location
 
 Since metrics are aggregates they are not paginated. But the resource endpoints
 use Kaminari to paginate results. Add `page` and `size` query params to control
 pagination. by default we only render the first 25 items. 
 
-(I might regret this and have to remove it due to time constraints) 
+(I might regret this and have to remove it due to time constraints)
 You can also use full text search by passing the search
 parameter. for example `GET /locations?search=starbucks` will return all
 locations with "starbucks" in the name.

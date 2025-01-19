@@ -1,20 +1,12 @@
 namespace(:ingest) do
-  desc("Ingest data from file path")
   task(files: :environment) do |t, args|
-    # move this to a Ingestion::ListFilesService service
+    # execute the list files service
+    result = App::Container["ingestion.list_files_service"].call
 
-    # list files in configured directory
-    files = Dir.glob("#{Rails.application.config.ingest_dir}/*.csv")
+    # exit with error if ingestion fails
+    exit(1) unless result.success?
 
-    files.each do |file|
-      # call the ingestion service
-      result = App::Container[:ingestion_service].call(file)
-
-      # exit with error if ingestion fails
-      exit(1) unless result.success?
-
-      # print success message
-      puts("Successfully ingested #{file}")
-    end
+    # print success message
+    puts("Successfully ingested #{result.value!.count} files")
   end
 end
