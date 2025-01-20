@@ -1,7 +1,7 @@
 class Location < ApplicationRecord
   max_paginates_per 100
 
-  belongs_to :owner
+  belongs_to :owner, optional: true
   has_many :inspections, dependent: :destroy
   has_many :violations, dependent: :destroy
   validates :name, presence: true
