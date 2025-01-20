@@ -138,6 +138,7 @@ would expect some form of authentication.
 - `GET /locations` - List locations.
 - `GET /locations/:id/inspections` - List all inspections for a location.
 - `GET /inspections` - List all inspections.
+- `GET /metrics` - get aggregated metrics by month
 
 Resource endpoints use Kaminari for pagination. Add `page` and `size` query
 parameters to control pagination. By default, we only render the first 25 items. 
