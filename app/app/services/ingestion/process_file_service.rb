@@ -1,9 +1,12 @@
 require "csv"
 
 module Ingestion
+  # this class will read each line of a csv file and send each row to the
+  # process inspection queue
+
   class ProcessFileService
     include Dry::Transaction(container: Container)
-    include Import[:logger]
+    include App::Deps[:logger]
 
     step :read_file
 
@@ -13,10 +16,13 @@ module Ingestion
       logger.info("Reading file #{input}")
 
       # stream each csv row to the process inspection queue
-      CSV.foreach(input, headers: true) do |i, row|
-        message = row.to_h.to_json
-        logger.info("Processing row(#{i}) from #{input}: #{message}")
-        # send the message to the process inspection queue
+      CSV.foreach(input, headers: true) do |row|
+        # converting row to hash
+        message = row.to_h
+        logger.info("Queueing row from #{input}: #{message}")
+
+        # queue the message to the process inspection job
+        ProcessInspectionJob.perform_later(message)
       end
 
       logger.info("Finished reading file: #{input}")

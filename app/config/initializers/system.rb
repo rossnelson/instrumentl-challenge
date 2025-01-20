@@ -15,5 +15,6 @@ Container = Dry::Rails::Container
 # Register the logger as a component that can be injected
 Container.register(:logger, Rails.logger)
 
-# Import is a shortcut for the injector
-Import = Dry::Rails::Container.injector
+module Types
+  include Dry::Types()
+end

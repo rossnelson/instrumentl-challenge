@@ -12,8 +12,8 @@ RSpec.describe Ingestion::ProcessFileService, type: :service do
     allow(logger).to(receive(:error))
     allow(CSV).to(
       receive(:foreach)
-        .and_yield(0, CSV::Row.new([ "header1", "header2" ], [ "value1", "value2" ]))
-        .and_yield(1, CSV::Row.new([ "header1", "header2" ], [ "value3", "value4" ]))
+        .and_yield(CSV::Row.new(["header1", "header2"], ["value1", "value2"]))
+        .and_yield(CSV::Row.new(["header1", "header2"], ["value3", "value4"]))
     )
   end
 
@@ -23,12 +23,12 @@ RSpec.describe Ingestion::ProcessFileService, type: :service do
         service.call(file_path)
         expect(logger).to(
           have_received(:info).with(
-            "Processing row(0) from #{file_path}: {\"header1\":\"value1\",\"header2\":\"value2\"}"
+            "Queueing row from #{file_path}: {\"header1\"=>\"value1\", \"header2\"=>\"value2\"}"
           )
         )
         expect(logger).to(
           have_received(:info).with(
-            "Processing row(1) from #{file_path}: {\"header1\":\"value3\",\"header2\":\"value4\"}"
+            "Queueing row from #{file_path}: {\"header1\"=>\"value3\", \"header2\"=>\"value4\"}"
           )
         )
       end

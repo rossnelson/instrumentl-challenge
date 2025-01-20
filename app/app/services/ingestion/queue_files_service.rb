@@ -1,7 +1,10 @@
 module Ingestion
+  # this class will list all files in the configured ingest directory
+  # and send each file to the ProcessFileJob for queued processing
+
   class QueueFilesService
     include Dry::Transaction(container: Container)
-    include Import[:logger]
+    include App::Deps[:logger]
 
     step :list_files
 

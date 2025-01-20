@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ProcessFileJob, type: :job do
   let(:service) { instance_double("Ingestion::ProcessFileService") }
-  let(:args) { [ "path/to/file.csv" ] }
+  let(:args) { "path/to/file.csv" }
 
   before do
     allow(App::Container).to(receive(:[]).with("ingestion.process_file_service").and_return(service))
@@ -16,7 +16,7 @@ RSpec.describe ProcessFileJob, type: :job do
 
       it "calls the process file service with the correct arguments" do
         expect(service).to(receive(:call).with(args))
-        described_class.perform_now(*args)
+        described_class.perform_now(*[args])
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe ProcessFileJob, type: :job do
       end
 
       it "raises an error" do
-        expect { described_class.perform_now(*args) }.to(raise_error(StandardError, error_message))
+        expect { described_class.perform_now(*[args]) }.to(raise_error(StandardError, error_message))
       end
     end
   end
