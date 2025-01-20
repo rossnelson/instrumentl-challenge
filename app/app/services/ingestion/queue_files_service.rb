@@ -1,5 +1,5 @@
 module Ingestion
-  # this class will list all files in the configured ingest directory
+  # QueueFilesService will list all files in the configured ingest directory
   # and send each file to the ProcessFileJob for queued processing
 
   class QueueFilesService

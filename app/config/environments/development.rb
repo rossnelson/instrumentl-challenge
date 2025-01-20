@@ -65,6 +65,9 @@ Rails.application.configure do
   # so, the only way to handle this is to use a non memory backend. outside of
   # scope for this exercise, but something to keep in mind.
   config.active_job.queue_adapter = :inline
+  config.active_job.logger = ActiveSupport::Logger.new(
+    File.join(Rails.root, "log", "active_job.log")
+  )
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

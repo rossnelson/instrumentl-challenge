@@ -1,7 +1,7 @@
 require "csv"
 
 module Ingestion
-  # this class will read each line of a csv file and send each row to the
+  # ProcessFileService will read each line of a csv file and send each row to the
   # process inspection queue
 
   class ProcessFileService

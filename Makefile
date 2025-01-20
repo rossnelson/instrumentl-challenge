@@ -8,7 +8,7 @@ run_api:
 	cd ./app && bundle && rails s
 
 tail_logs:
-	tail -f ./app/log/development.log
+	touch ./app/log/active_job.log && tail -f ./app/log/active_job.log
 
 ingest:
 	cd ./app && bundle exec rake ingest:files

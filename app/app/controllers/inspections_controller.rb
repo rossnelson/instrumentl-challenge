@@ -1,7 +1,6 @@
-class Locations::InspectionsController < LocationsController
+class InspectionsController < LocationsController
   def index
     strong_params = params.permit(
-      :location_id,
       :page,
       :per_page,
       :min_score,

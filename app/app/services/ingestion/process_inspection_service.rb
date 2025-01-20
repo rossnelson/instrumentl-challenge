@@ -1,5 +1,5 @@
 module Ingestion
-  # this class will process each message in the process inspection queue
+  # ProcessInspectionService will process each message in the process inspection queue
   # it will validate the message and upsert the data into the database
   # the order of upserts is important to maintain foreign key relationships
 

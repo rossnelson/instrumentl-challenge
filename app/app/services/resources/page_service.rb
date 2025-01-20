@@ -1,4 +1,6 @@
 module Resources
+  # PageService will format the page for the content response.
+
   class PageService
     def call(content:, json_options: {})
       {

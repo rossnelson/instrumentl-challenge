@@ -8,8 +8,6 @@ class Location < ApplicationRecord
 
   scope(
     :search,
-    ->(query) {
-      where("search_vector @@ to_tsquery('english', ?)", query)
-    }
+    ->(query) { where("search_vector @@ plainto_tsquery('english', ?)", query) }
   )
 end
