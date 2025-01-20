@@ -107,7 +107,15 @@ be available at `localhost:5432`.
 
 ### Import the sample data
 
-Run:
+Create a directory for the sample data:
+
+```sh
+mkdir -p tmp/ingest
+```
+
+Then copy the sample data to the ingest directory.
+
+Once data is i place, run:
 
 ```sh
 make ingest
@@ -180,8 +188,11 @@ This will:
 
 ### Production-Readiness Plan:
 
-TBD  
-![charts and diagrams](/assets/safebite.svg "charts and diagrams")
+Ingestion Flow:
+![Ingestion FLow](/assets/ingestion-flow.jpg "Ingestion Flow")
+
+Platform Architecture:
+![Platform Architecture](/assets/platform-architecture.jpg "Platform Architecture")
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
