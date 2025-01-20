@@ -75,7 +75,8 @@ module Ingestion
 
       metric.inspection_count = scores.size
       metric.violation_count = violations
-      metric.average_score = scores.sum / scores.size
+      metric.score_sum = scores.sum
+      metric.score_count = scores.size
 
       Success(payload)
     rescue => e

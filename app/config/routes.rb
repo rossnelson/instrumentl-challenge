@@ -7,4 +7,7 @@ Rails.application.routes.draw do
 
   # Inspections
   get("/inspections", to: "inspections#index")
+
+  # Metrics
+  get("/metrics", to: "metrics#index")
 end

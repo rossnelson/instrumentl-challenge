@@ -133,6 +133,8 @@ validation and database insertion.
 All endpoints are currently unauthenticated. In a production environment, we
 would expect some form of authentication.
 
+[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://www.postman.com/simiancreative/workspace/safebite/collection/198142-10dd47ee-dbea-4b82-a9e5-8e740bae1b15?action=share&creator=198142)
+
 - `GET /locations` - List locations.
 - `GET /locations/:id/inspections` - List all inspections for a location.
 - `GET /inspections` - List all inspections.

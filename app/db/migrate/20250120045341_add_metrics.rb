@@ -8,7 +8,8 @@ class AddMetrics < ActiveRecord::Migration[7.2]
       t.string :city
       t.string :state
       t.string :postal_code
-      t.integer :average_score, default: 0, null: false
+      t.integer :score_sum, default: 0, null: false
+      t.integer :score_count, default: 0, null: false
       t.integer :inspection_count, default: 0, null: false
       t.integer :violation_count, default: 0, null: false
       t.timestamps
