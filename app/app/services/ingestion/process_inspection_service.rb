@@ -99,6 +99,7 @@ module Ingestion
         street: input[:address],
         city: input[:city],
         postal_code: input[:postal_code],
+        phone_number: input[:phone_number],
         owner_id: input[:owner_id]
       )
 

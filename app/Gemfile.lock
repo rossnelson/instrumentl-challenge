@@ -167,6 +167,10 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.9.1)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
     logger (1.6.5)
     loofah (2.24.0)
@@ -330,6 +334,7 @@ DEPENDENCIES
   dry-struct (~> 1.7)
   dry-transaction (~> 0.16.0)
   dry-validation (~> 1.11)
+  kaminari-activerecord (~> 1.2)
   pg (~> 1.5)
   puma (>= 5.0)
   rails (~> 7.2.0)

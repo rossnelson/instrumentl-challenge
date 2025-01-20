@@ -49,3 +49,5 @@ gem "dry-rails", "~> 0.7.0"
 gem "dry-transaction", "~> 0.16.0"
 gem "dry-validation", "~> 1.11"
 gem "dry-struct", "~> 1.7"
+
+gem "kaminari-activerecord", "~> 1.2"

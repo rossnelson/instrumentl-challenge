@@ -16,10 +16,9 @@
 
   <p align="center">
     SafeBite is a restaurant inspection and food safety platform that provides
-        insights into health inspections, violations, and compliance
-        ratings. By aggregating and analyzing inspection data, SafeBite helps
-        diners make informed choices and empowers restaurants to maintain the
-        highest food safety standards.
+    insights into health inspections, violations, and compliance ratings. 
+    By aggregating and analyzing inspection data, SafeBite helps diners make 
+    informed choices and empowers restaurants to maintain the highest food safety standards.
   </p>
 </div>
 
@@ -55,7 +54,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is organized into 2 primary features
+This project is organized into two primary features:
 * A data import service
 * A REST API for data access
 
@@ -63,8 +62,7 @@ This project is organized into 2 primary features
 
 ### Built With
 
-For this challenge locally accessible services and tools were
-selected:
+For this challenge, locally accessible services and tools were selected:
 
 [![Postgresql][Postgresql]][Postgresql-url]  
 [![Rails 7.2][Rails72]][Rails72-url]  
@@ -78,22 +76,29 @@ selected:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Ensure the prerequisite tools are installed then review the Installation and
+Ensure the prerequisite tools are installed, then review the Installation and
 Usage sections below.
 
 ### Prerequisites
 
-* ruby version 3.1.6 or greater
-* docker desktop and compose
-
+* Ruby version 3.1.6 or greater
+* Docker Desktop and Compose
 
 ### Installation
 
-Once the prerequisites have been met, at the root of the project run
-`make -j`. It will start both the rails application, the docker
-compose service, and tail the development logs. The rails application will be
-available at `localhost:3000` and postgres will be available at
-`localhost:5432`. 
+Once the prerequisites have been met, at the root of the project, run:
+
+```sh
+make -j
+```
+
+This will:
+- Start the Rails application.
+- Start the Docker Compose service.
+- Tail the development logs.
+
+The Rails application will be available at `localhost:3000`, and PostgreSQL will
+be available at `localhost:5432`. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -102,56 +107,81 @@ available at `localhost:3000` and postgres will be available at
 
 ### Import the sample data
 
-Run `make ingest`, this will executre the `ingest:files` rake task which calls 
-the `Ingestion::ListFilesService` which will loop over the files in the
-configured `ingest_dir` and pass each to the `Ingestion::FileService`. The
-`Ingestion::FileService` will parse the CSV then group and validate the data.
-Once processed, the data is ready for DB insertion.
+Run:
 
-### API endpoints
+```sh
+make ingest
+```
 
-All endpoints are currently unauthenticated. In a production environment we
-would expect some kind of authentication to be in place.
+This will execute the `ingest:files` rake task, which calls the
+`Ingestion::QueueFilesService`. This service will loop over the files in the
+configured `ingest_dir` and pass each file path to the
+`Ingestion::ProcessFileService`. The `Ingestion::ProcessFileService` will stream
+the CSV rows to the `Ingestion::ProcessInspectionService`, one at a time, for
+validation and database insertion.
 
-- `GET /metrics` - return total counts for each imported object
-- `GET /locations` - list locations
-- `GET /locations/:id` - Get a single location by id
-- `GET /locations/:id/inspections` - list all inspections for a location
+### API Endpoints
 
-Since metrics are aggregates they are not paginated. But the resource endpoints
-use Kaminari to paginate results. Add `page` and `size` query params to control
-pagination. by default we only render the first 25 items. 
+All endpoints are currently unauthenticated. In a production environment, we
+would expect some form of authentication.
 
-(I might regret this and have to remove it due to time constraints)
-You can also use full text search by passing the search
-parameter. for example `GET /locations?search=starbucks` will return all
-locations with "starbucks" in the name.
+- `GET /locations` - List locations.
+- `GET /locations/:id/inspections` - List all inspections for a location.
+- `GET /metrics` - Return total counts for each imported object.
+
+Since metrics are aggregates, they are not paginated. However, the resource endpoints
+use Kaminari for pagination. Add `page` and `size` query parameters to control
+pagination. By default, we only render the first 25 items. 
+
+You can also use full-text search on locations by passing the `search`
+parameter. For example:
+
+```sh
+GET /locations?search=Tiramisu
+```
+
+This will return all locations with "Tiramisu" in the name.
 
 ### Executing Tests
 
-From the root of the project run `make test`:
+From the root of the project, run:
 
-1. Waits fo rthe postgres db to become accessible
-1. Creates and migrates the test db
-1. Lints the codebase using `rubocop`
-1. Executes unit test susing `rspec`
+```sh
+make test
+```
+
+This will:
+1. Wait for the PostgreSQL database to become accessible.
+2. Create and migrate the test database.
+3. Lint the codebase using `rubocop`.
+4. Execute unit tests using `rspec`.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] More useful aggregates
-    - top `n` violations
-    - top `n` locations with violations
-    - violations by location over time
-    - violation serverity map
-- [ ] Add authentication
+- [ ] Improve Inspection Validation and Value tpye coercion.
+- [ ] Properly configured Active Job backend.
+- [ ] Add coverage with unit tests.
+- [ ] Ranked Risk Categories and Violation Codes
+- [ ] Add sorting to endpoints.
+- [ ] Clean the raw data prior to insertion:
+    - trim whitespace
+    - normalize address fields
+    - normalize phone numbers
+    - normalize inspection dates
+- [ ] Add additional aggregates:
+    - Top `n` violations
+    - Top `n` locations with violations
+    - Violations by location over time
+    - Violation severity map
+- [ ] Authentication
 
-Finalize plans on making the product production ready: 
+### Production-Readiness Plan:
 
-TBD ![charts and diagrams](/assets/safebite.svg "charts and diagrams")
-
+TBD  
+![charts and diagrams](/assets/safebite.svg "charts and diagrams")
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -160,9 +190,10 @@ TBD ![charts and diagrams](/assets/safebite.svg "charts and diagrams")
 
 Ross Nelson - ross@simiancreative.com
 
-Project Link: [https://github.com/rossnelson/instrumentl-challenge](https://github.com/ross_nelson/instrumentl-challenge)
+Project Link: [https://github.com/rossnelson/instrumentl-challenge](https://github.com/rossnelson/instrumentl-challenge)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
