@@ -115,7 +115,7 @@ mkdir -p tmp/ingest
 
 Then copy the sample data to the ingest directory.
 
-Once data is i place, run:
+Once data is in place, run:
 
 ```sh
 make ingest
@@ -182,12 +182,12 @@ This will:
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Improve Inspection Validation and Value tpye coercion.
+- [ ] Improve Inspection Validation and Value type coercion.
 - [ ] Properly configured Active Job backend.
 - [ ] Add coverage with unit tests.
 - [ ] Ranked Risk Categories and Violation Codes
 - [ ] Add sorting to endpoints.
-- [ ] Clean the raw data prior to insertion:
+- [ ] Clean the raw data before insertion:
     - trim whitespace
     - normalize address fields
     - normalize phone numbers
