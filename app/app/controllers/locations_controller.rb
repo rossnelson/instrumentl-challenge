@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   def index
-    strong_params = params.permit(:page, :per_page, :search, :postal_code)
+    strong_params = params.permit(:page, :size, :search, :postal_code)
 
     # loads the locations page service
     service = App::Container["models.locations_paginated_service"]

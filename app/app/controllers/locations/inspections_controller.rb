@@ -3,7 +3,7 @@ class Locations::InspectionsController < LocationsController
     strong_params = params.permit(
       :location_id,
       :page,
-      :per_page,
+      :size,
       :min_score,
       :max_score
     )

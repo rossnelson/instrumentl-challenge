@@ -2,7 +2,7 @@ class InspectionsController < LocationsController
   def index
     strong_params = params.permit(
       :page,
-      :per_page,
+      :size,
       :min_score,
       :max_score
     )

@@ -135,13 +135,12 @@ would expect some form of authentication.
 
 - `GET /locations` - List locations.
 - `GET /locations/:id/inspections` - List all inspections for a location.
-- `GET /metrics` - Return total counts for each imported object.
+- `GET /inspections` - List all inspections.
 
-Since metrics are aggregates, they are not paginated. However, the resource endpoints
-use Kaminari for pagination. Add `page` and `size` query parameters to control
-pagination. By default, we only render the first 25 items. 
+Resource endpoints use Kaminari for pagination. Add `page` and `size` query
+parameters to control pagination. By default, we only render the first 25 items. 
 
-You can also use full-text search on locations by passing the `search`
+You can also use full-text search on `/locations` by passing the `search`
 parameter. For example:
 
 ```sh
@@ -149,6 +148,18 @@ GET /locations?search=Tiramisu
 ```
 
 This will return all locations with "Tiramisu" in the name.
+
+Or use the `postal_code` parameter to filter by postal code:
+
+```sh
+GET /locations?postal_code=94110
+```
+
+all `inspections` endpoints support filtering by min and max score
+
+```sh
+GET /locations/:id/inspections?min_score=90&max_score=100
+```
 
 ### Executing Tests
 
