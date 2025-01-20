@@ -27,7 +27,7 @@ module Ingestion
       end
 
       # once all files are queued, return the list of files as a monadic success
-      logger.info("Finished queue files (#{files.count} files found)")
+      logger.info("Finished queuing files: (#{files.count} files found)")
       Success(files)
     end
   end

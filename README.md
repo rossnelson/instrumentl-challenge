@@ -188,7 +188,8 @@ This will:
 - [ ] Add coverage with unit tests.
 - [ ] Ranked Risk Categories and Violation Codes
 - [ ] Add sorting to endpoints.
-- [ ] Clean the raw data before insertion:
+- [ ] Add Postres GIS for location-based queries.
+- [ ] Clean the raw data prior to insertion:
     - trim whitespace
     - normalize address fields
     - normalize phone numbers
