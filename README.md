@@ -93,9 +93,10 @@ make -j
 ```
 
 This will:
-- Start the Rails application.
 - Start the Docker Compose service.
-- Tail the development logs.
+- Install Gems
+- Start the Rails application.
+- Tail the job logs.
 
 The Rails application will be available at `localhost:3000`, and PostgreSQL will
 be available at `localhost:5432`. 
@@ -110,7 +111,7 @@ be available at `localhost:5432`.
 Create a directory for the sample data:
 
 ```sh
-mkdir -p tmp/ingest
+mkdir -p app/tmp/ingest
 ```
 
 Then copy the sample data to the ingest directory.
